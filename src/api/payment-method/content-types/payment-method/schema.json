@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payment_methods",
+  "info": {
+    "singularName": "payment-method",
+    "pluralName": "payment-methods",
+    "displayName": "PaymentMethod"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "paymentMethod": {
+      "type": "string",
+      "required": true
+    },
+    "addedOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "updatedOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "isBanned": {
+      "type": "boolean",
+      "default": false
+    },
+    "bannedReason": {
+      "type": "text"
+    },
+    "addedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "added_payment_methods"
+    },
+    "updatedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "updated_payment_methods"
+    },
+    "bannedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "banned_payment_methods"
+    },
+    "payment_ride_histories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ride-history.ride-history",
+      "mappedBy": "payment_method"
+    }
+  }
+}

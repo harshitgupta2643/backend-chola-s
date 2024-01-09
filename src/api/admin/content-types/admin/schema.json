@@ -1,0 +1,181 @@
+{
+  "kind": "collectionType",
+  "collectionName": "admins",
+  "info": {
+    "singularName": "admin",
+    "pluralName": "admins",
+    "displayName": "Admin",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "ADMIN",
+        "REPRESENTATIVE"
+      ],
+      "required": true
+    },
+    "username": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "password": {
+      "type": "password",
+      "required": true,
+      "minLength": 8
+    },
+    "isBanned": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "bannedReason": {
+      "type": "text"
+    },
+    "createdOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "updatedOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "admin_permisions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::admin-permision.admin-permision",
+      "mappedBy": "admin"
+    },
+    "vehicle_types": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vehicle-type.vehicle-type",
+      "mappedBy": "updatedby"
+    },
+    "vehicles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vehicle.vehicle",
+      "mappedBy": "verifiedby"
+    },
+    "rc_vehicle_documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vehicle-document.vehicle-document",
+      "mappedBy": "rc_verifiedby"
+    },
+    "insurance_vehicle_documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vehicle-document.vehicle-document",
+      "mappedBy": "insurance_verifiedby"
+    },
+    "pollution_vehicle_documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vehicle-document.vehicle-document",
+      "mappedBy": "pollution_verifiedby"
+    },
+    "added_insurance_providers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::insurance-provider.insurance-provider",
+      "mappedBy": "addedby"
+    },
+    "updated_insurance_providers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::insurance-provider.insurance-provider",
+      "mappedBy": "updatedby"
+    },
+    "banned_insurance_providers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::insurance-provider.insurance-provider",
+      "mappedBy": "bannedby"
+    },
+    "added_payment_methods": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payment-method.payment-method",
+      "mappedBy": "addedby"
+    },
+    "updated_payment_methods": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payment-method.payment-method",
+      "mappedBy": "updatedby"
+    },
+    "banned_payment_methods": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payment-method.payment-method",
+      "mappedBy": "bannedby"
+    },
+    "added_ride_cancellation_reasons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ride-cancellation.ride-cancellation",
+      "mappedBy": "addedby"
+    },
+    "updated_ride_cancellation_reasons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ride-cancellation.ride-cancellation",
+      "mappedBy": "updatedby"
+    },
+    "added_allowed_locations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::allowed.allowed",
+      "mappedBy": "addedby"
+    },
+    "updated_allowed_locations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::allowed.allowed",
+      "mappedBy": "updatedby"
+    },
+    "banned_allowed_locations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::allowed.allowed",
+      "mappedBy": "bannedby"
+    },
+    "driver_ride_histories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ride-history.ride-history",
+      "mappedBy": "driveruser"
+    },
+    "aadhar_user_documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-document.user-document",
+      "mappedBy": "aadharverifiedby"
+    },
+    "pan_user_documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-document.user-document",
+      "mappedBy": "panverifiedby"
+    },
+    "licence_user_documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-document.user-document",
+      "mappedBy": "licenceverifiedby"
+    }
+  }
+}

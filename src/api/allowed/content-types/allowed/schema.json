@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alloweds",
+  "info": {
+    "singularName": "allowed",
+    "pluralName": "alloweds",
+    "displayName": "AllowedLocations"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "location": {
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "addedOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "updatedOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "isBanned": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "bannedReason": {
+      "type": "text"
+    },
+    "addedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "added_allowed_locations"
+    },
+    "updatedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "updated_allowed_locations"
+    },
+    "bannedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "banned_allowed_locations"
+    }
+  }
+}

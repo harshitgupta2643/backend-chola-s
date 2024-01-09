@@ -1,0 +1,91 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vehicle_documents",
+  "info": {
+    "singularName": "vehicle-document",
+    "pluralName": "vehicle-documents",
+    "displayName": "VehicleDocument",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "vehicle": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::vehicle.vehicle",
+      "inversedBy": "vehicle_document"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "vehicle_document"
+    },
+    "rcNo": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "rcExpiryDate": {
+      "type": "date",
+      "required": true
+    },
+    "rcImage": {
+      "type": "string",
+      "required": true
+    },
+    "rcVerified": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "rc_verifiedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "rc_vehicle_documents"
+    },
+    "insurance": {
+      "type": "string"
+    },
+    "insuranceExpiryDate": {
+      "type": "date"
+    },
+    "insuranceVerified": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "insurance_verifiedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "insurance_vehicle_documents"
+    },
+    "pollution": {
+      "type": "string"
+    },
+    "pollutionExpiryDate": {
+      "type": "date"
+    },
+    "pollutionVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "pollution_verifiedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "pollution_vehicle_documents"
+    },
+    "insurance_provider": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::insurance-provider.insurance-provider",
+      "inversedBy": "insurance_vehicle_documents"
+    }
+  }
+}

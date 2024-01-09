@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vehicles",
+  "info": {
+    "singularName": "vehicle",
+    "pluralName": "vehicles",
+    "displayName": "Vehicle",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "vehicle"
+    },
+    "fuelType": {
+      "type": "enumeration",
+      "enum": [
+        "PETROL",
+        "DIESEL",
+        "CNG",
+        "ELECTRIC"
+      ],
+      "required": true
+    },
+    "vehicleNo": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "verified": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "verifiedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "vehicles"
+    },
+    "vehicleImages": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "registeredOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "updatedOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "vehicle_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::vehicle-type.vehicle-type",
+      "inversedBy": "vehicles"
+    },
+    "vehicle_document": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::vehicle-document.vehicle-document",
+      "mappedBy": "vehicle"
+    }
+  }
+}

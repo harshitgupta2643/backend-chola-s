@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_documents",
+  "info": {
+    "singularName": "user-document",
+    "pluralName": "user-documents",
+    "displayName": "UserDocument"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "aadharCardNo": {
+      "type": "string"
+    },
+    "aadharFront": {
+      "type": "text"
+    },
+    "aadharBack": {
+      "type": "text"
+    },
+    "aadharVerified": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "panCardNo": {
+      "type": "string"
+    },
+    "panImage": {
+      "type": "text"
+    },
+    "panVerified": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "licenceNo": {
+      "type": "string"
+    },
+    "licenceImage": {
+      "type": "text"
+    },
+    "licenceVerified": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "user_document"
+    },
+    "aadharverifiedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "aadhar_user_documents"
+    },
+    "panverifiedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "pan_user_documents"
+    },
+    "licenceverifiedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "licence_user_documents"
+    }
+  }
+}

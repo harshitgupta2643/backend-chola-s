@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ride_histories",
+  "info": {
+    "singularName": "ride-history",
+    "pluralName": "ride-histories",
+    "displayName": "RideHistory"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pickupLocation": {
+      "type": "text",
+      "required": true
+    },
+    "dropLocation": {
+      "type": "text",
+      "required": true
+    },
+    "fare": {
+      "type": "string",
+      "required": true
+    },
+    "rideStatus": {
+      "type": "enumeration",
+      "enum": [
+        "MATCHING",
+        "MATCHED",
+        "RIDESTARTED",
+        "COMPLETED",
+        "CANCELLED"
+      ],
+      "required": true,
+      "default": "MATCHING"
+    },
+    "rideRating": {
+      "type": "integer",
+      "required": true
+    },
+    "createdOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "rideruser": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "rider_ride_histories"
+    },
+    "driveruser": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "driver_ride_histories"
+    },
+    "vehicle_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::vehicle-type.vehicle-type",
+      "inversedBy": "vehicle_type_ride_histories"
+    },
+    "payment_method": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::payment-method.payment-method",
+      "inversedBy": "payment_ride_histories"
+    },
+    "ride_cancellation_reasons": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::ride-cancellation.ride-cancellation",
+      "inversedBy": "ride_histories"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "admin_permisions",
+  "info": {
+    "singularName": "admin-permision",
+    "pluralName": "admin-permisions",
+    "displayName": "admin-permision",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "write": {
+      "type": "boolean",
+      "default": false
+    },
+    "update": {
+      "type": "boolean",
+      "default": false
+    },
+    "delete": {
+      "type": "boolean",
+      "default": false
+    },
+    "download": {
+      "type": "boolean",
+      "default": false
+    },
+    "addedOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "admin": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "admin_permisions"
+    }
+  }
+}

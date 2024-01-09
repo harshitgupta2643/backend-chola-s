@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vehicle_types",
+  "info": {
+    "singularName": "vehicle-type",
+    "pluralName": "vehicle-types",
+    "displayName": "VehicleType"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "vehicletype": {
+      "type": "string"
+    },
+    "createdby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "vehicle_types"
+    },
+    "createdOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "updatedOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "updatedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "vehicle_types"
+    },
+    "vehicles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vehicle.vehicle",
+      "mappedBy": "vehicle_type"
+    },
+    "vehicle_type_ride_histories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ride-history.ride-history",
+      "mappedBy": "vehicle_type"
+    }
+  }
+}

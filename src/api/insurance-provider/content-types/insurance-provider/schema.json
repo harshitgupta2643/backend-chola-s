@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "insurance_providers",
+  "info": {
+    "singularName": "insurance-provider",
+    "pluralName": "insurance-providers",
+    "displayName": "InsuranceProvider"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "providerName": {
+      "type": "string",
+      "required": true
+    },
+    "addedOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "updatedOn": {
+      "type": "datetime",
+      "required": true
+    },
+    "isBanned": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "bannedReason": {
+      "type": "text",
+      "required": false
+    },
+    "addedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "added_insurance_providers"
+    },
+    "updatedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "updated_insurance_providers"
+    },
+    "bannedby": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::admin.admin",
+      "inversedBy": "banned_insurance_providers"
+    },
+    "insurance_vehicle_documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vehicle-document.vehicle-document",
+      "mappedBy": "insurance_provider"
+    }
+  }
+}
