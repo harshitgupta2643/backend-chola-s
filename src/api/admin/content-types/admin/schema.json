@@ -43,14 +43,6 @@
     "bannedReason": {
       "type": "text"
     },
-    "createdOn": {
-      "type": "datetime",
-      "required": true
-    },
-    "updatedOn": {
-      "type": "datetime",
-      "required": true
-    },
     "admin_permisions": {
       "type": "relation",
       "relation": "oneToMany",

@@ -28,10 +28,6 @@
       "type": "boolean",
       "default": false
     },
-    "addedOn": {
-      "type": "datetime",
-      "required": true
-    },
     "admin": {
       "type": "relation",
       "relation": "manyToOne",

@@ -20,14 +20,6 @@
       "target": "api::admin.admin",
       "inversedBy": "vehicle_types"
     },
-    "createdOn": {
-      "type": "datetime",
-      "required": true
-    },
-    "updatedOn": {
-      "type": "datetime",
-      "required": true
-    },
     "updatedby": {
       "type": "relation",
       "relation": "manyToOne",

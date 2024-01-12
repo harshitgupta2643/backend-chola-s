@@ -113,14 +113,6 @@
       ],
       "required": false
     },
-    "registeredOn": {
-      "type": "datetime",
-      "required": true
-    },
-    "updatedOn": {
-      "type": "datetime",
-      "required": true
-    },
     "auth": {
       "type": "relation",
       "relation": "oneToOne",

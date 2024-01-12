@@ -4,7 +4,8 @@
   "info": {
     "singularName": "insurance-provider",
     "pluralName": "insurance-providers",
-    "displayName": "InsuranceProvider"
+    "displayName": "InsuranceProvider",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,14 +14,6 @@
   "attributes": {
     "providerName": {
       "type": "string",
-      "required": true
-    },
-    "addedOn": {
-      "type": "datetime",
-      "required": true
-    },
-    "updatedOn": {
-      "type": "datetime",
       "required": true
     },
     "isBanned": {

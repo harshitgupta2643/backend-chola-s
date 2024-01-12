@@ -39,10 +39,6 @@
       "type": "integer",
       "required": true
     },
-    "createdOn": {
-      "type": "datetime",
-      "required": true
-    },
     "rideruser": {
       "type": "relation",
       "relation": "manyToOne",

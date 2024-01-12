@@ -573,6 +573,50 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<{
+        min: 1;
+        max: 50;
+      }>;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -727,8 +771,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
         'O_NEGATIVE'
       ]
     >;
-    registeredOn: Attribute.DateTime & Attribute.Required;
-    updatedOn: Attribute.DateTime & Attribute.Required;
     auth: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToOne',
@@ -771,50 +813,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
-  info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<{
-        min: 1;
-        max: 50;
-      }>;
-    code: Attribute.String & Attribute.Unique;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiAdminAdmin extends Schema.CollectionType {
   collectionName: 'admins';
   info: {
@@ -838,8 +836,6 @@ export interface ApiAdminAdmin extends Schema.CollectionType {
       }>;
     isBanned: Attribute.Boolean & Attribute.DefaultTo<false>;
     bannedReason: Attribute.Text;
-    createdOn: Attribute.DateTime & Attribute.Required;
-    updatedOn: Attribute.DateTime & Attribute.Required;
     admin_permisions: Attribute.Relation<
       'api::admin.admin',
       'oneToMany',
@@ -979,7 +975,6 @@ export interface ApiAdminPermisionAdminPermision extends Schema.CollectionType {
     update: Attribute.Boolean & Attribute.DefaultTo<false>;
     delete: Attribute.Boolean & Attribute.DefaultTo<false>;
     download: Attribute.Boolean & Attribute.DefaultTo<false>;
-    addedOn: Attribute.DateTime & Attribute.Required;
     admin: Attribute.Relation<
       'api::admin-permision.admin-permision',
       'manyToOne',
@@ -1015,8 +1010,6 @@ export interface ApiAllowedAllowed extends Schema.CollectionType {
   };
   attributes: {
     location: Attribute.Text & Attribute.Required & Attribute.Unique;
-    addedOn: Attribute.DateTime & Attribute.Required;
-    updatedOn: Attribute.DateTime & Attribute.Required;
     isBanned: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
@@ -1091,14 +1084,13 @@ export interface ApiInsuranceProviderInsuranceProvider
     singularName: 'insurance-provider';
     pluralName: 'insurance-providers';
     displayName: 'InsuranceProvider';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     providerName: Attribute.String & Attribute.Required;
-    addedOn: Attribute.DateTime & Attribute.Required;
-    updatedOn: Attribute.DateTime & Attribute.Required;
     isBanned: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
@@ -1153,8 +1145,6 @@ export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
   };
   attributes: {
     paymentMethod: Attribute.String & Attribute.Required;
-    addedOn: Attribute.DateTime & Attribute.Required;
-    updatedOn: Attribute.DateTime & Attribute.Required;
     isBanned: Attribute.Boolean & Attribute.DefaultTo<false>;
     bannedReason: Attribute.Text;
     addedby: Attribute.Relation<
@@ -1209,8 +1199,6 @@ export interface ApiRideCancellationRideCancellation
   };
   attributes: {
     cause: Attribute.String & Attribute.Required;
-    addedOn: Attribute.DateTime & Attribute.Required;
-    updatedOn: Attribute.DateTime & Attribute.Required;
     addedby: Attribute.Relation<
       'api::ride-cancellation.ride-cancellation',
       'manyToOne',
@@ -1264,7 +1252,6 @@ export interface ApiRideHistoryRideHistory extends Schema.CollectionType {
       Attribute.Required &
       Attribute.DefaultTo<'MATCHING'>;
     rideRating: Attribute.Integer & Attribute.Required;
-    createdOn: Attribute.DateTime & Attribute.Required;
     rideruser: Attribute.Relation<
       'api::ride-history.ride-history',
       'manyToOne',
@@ -1402,8 +1389,6 @@ export interface ApiVehicleVehicle extends Schema.CollectionType {
       'api::admin.admin'
     >;
     vehicleImages: Attribute.Media & Attribute.Required;
-    registeredOn: Attribute.DateTime & Attribute.Required;
-    updatedOn: Attribute.DateTime & Attribute.Required;
     vehicle_type: Attribute.Relation<
       'api::vehicle.vehicle',
       'manyToOne',
@@ -1522,8 +1507,6 @@ export interface ApiVehicleTypeVehicleType extends Schema.CollectionType {
       'manyToOne',
       'api::admin.admin'
     >;
-    createdOn: Attribute.DateTime & Attribute.Required;
-    updatedOn: Attribute.DateTime & Attribute.Required;
     updatedby: Attribute.Relation<
       'api::vehicle-type.vehicle-type',
       'manyToOne',
@@ -1571,10 +1554,10 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
       'api::admin.admin': ApiAdminAdmin;
       'api::admin-permision.admin-permision': ApiAdminPermisionAdminPermision;
       'api::allowed.allowed': ApiAllowedAllowed;

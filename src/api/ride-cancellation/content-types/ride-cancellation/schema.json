@@ -16,14 +16,6 @@
       "type": "string",
       "required": true
     },
-    "addedOn": {
-      "type": "datetime",
-      "required": true
-    },
-    "updatedOn": {
-      "type": "datetime",
-      "required": true
-    },
     "addedby": {
       "type": "relation",
       "relation": "manyToOne",

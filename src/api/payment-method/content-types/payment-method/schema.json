@@ -15,14 +15,6 @@
       "type": "string",
       "required": true
     },
-    "addedOn": {
-      "type": "datetime",
-      "required": true
-    },
-    "updatedOn": {
-      "type": "datetime",
-      "required": true
-    },
     "isBanned": {
       "type": "boolean",
       "default": false
